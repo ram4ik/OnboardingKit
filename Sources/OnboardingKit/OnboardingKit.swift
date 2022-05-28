@@ -2,15 +2,19 @@ import UIKit
 
 public class OnboardingKit {
     
-    private var onboardingViewController: OnboardingViewController = {
-        let controller = OnboardingViewController()
+    private let slide: [Slide]
+    private let tintColor: UIColor
+    
+    private lazy var onboardingViewController: OnboardingViewController = {
+        let controller = OnboardingViewController(slide: slide, tintColor: tintColor)
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .fullScreen
         return  controller
     }()
     
-    public init() {
-        
+    public init(slide: [Slide], tintColor: UIColor) {
+        self.slide = slide
+        self.tintColor = tintColor
     }
     
     public func launchOnboarding(rootVC: UIViewController) {
