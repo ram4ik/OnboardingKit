@@ -1,6 +1,23 @@
-public struct OnboardingKit {
-    public private(set) var text = "Hello, World!"
+import UIKit
 
+public class OnboardingKit {
+    
+    private var onboardingViewController: OnboardingViewController = {
+        let controller = OnboardingViewController()
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .fullScreen
+        return  controller
+    }()
+    
     public init() {
+        
+    }
+    
+    public func launchOnboarding(rootVC: UIViewController) {
+        rootVC.present(onboardingViewController, animated: true, completion: nil)
+    }
+    
+    public func dismissOnboarding() {
+        
     }
 }
