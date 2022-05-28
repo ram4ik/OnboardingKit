@@ -9,11 +9,11 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
     
-    private let slide: [Slide]
+    private let slides: [Slide]
     private let tintColor: UIColor
     
     private lazy var transitionView: TransitionView = {
-        let view = TransitionView()
+        let view = TransitionView(slides: slides, tintColor: tintColor)
         return view
     }()
     
@@ -35,7 +35,7 @@ class OnboardingViewController: UIViewController {
     }()
     
     init(slide: [Slide], tintColor: UIColor) {
-        self.slide = slide
+        self.slides = slide
         self.tintColor = tintColor
         super.init(nibName: nil, bundle: nil)
     }
