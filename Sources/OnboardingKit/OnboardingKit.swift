@@ -1,14 +1,27 @@
 import UIKit
 
+public protocol OnboardingKitDelegate: AnyObject {
+    func nextButtonDidTap(atIndex index: Int)
+    func getStartedButtonTap()
+}
+
 public class OnboardingKit {
     
     private let slide: [Slide]
     private let tintColor: UIColor
     
+    public weak var delegate: OnboardingKitDelegate?
+    
     private lazy var onboardingViewController: OnboardingViewController = {
         let controller = OnboardingViewController(slide: slide, tintColor: tintColor)
         controller.modalTransitionStyle = .crossDissolve
         controller.modalPresentationStyle = .fullScreen
+        controller.nextButtonDidTap = { [weak self] index in
+            self?.delegate?.nextButtonDidTap(atIndex: index)
+        }
+        controller.getStartedButtonDidTap = { [weak self] in
+            self?.delegate?.getStartedButtonTap()
+        }
         return  controller
     }()
     
