@@ -59,6 +59,10 @@ class OnboardingViewController: UIViewController {
         
     }
     
+    func stopAnimation() {
+        transitionView.stop()
+    }
+    
     private func setupViews() {
         view.backgroundColor = .white
         
